@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: #ffc0cb; /* Warna pink */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            animation: fadeInBackground 2s ease-in-out;
+        }
+
+        @keyframes fadeInBackground {
+            from { background-color: #ff69b4; }
+            to { background-color: #ffc0cb; }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+            text-shadow: 2px 2px 4px #ff69b4;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 20px auto;
+            width: 80%;
+            text-shadow: 1px 1px 2px #ff69b4;
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            margin: 50px auto;
+            width: 80%;
+            background-color: #ffb6c1;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px #ff1493;
+            transition: all 0.3s ease;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            from, 20%, 40%, 60%, 80%, to {
+                -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            from {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+            20% {
+                transform: scale3d(1.1, 1.1, 1.1);
+            }
+            40% {
+                transform: scale3d(.9, .9, .9);
+            }
+            60% {
+                opacity: 1;
+                transform: scale3d(1.03, 1.03, 1.03);
+            }
+            80% {
+                transform: scale3d(.97, .97, .97);
+            }
+            to {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        .btn:hover {
+            background-color: #ff1493;
+            box-shadow: 0 4px #ff69b4;
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4); 
+            padding-top: 60px;
+            animation: fadeInModal 0.5s ease;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: #ffb6c1;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+            animation: slideUp 0.7s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: #ffffff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px #ff1493;
+            transition: all 0.3s ease;
+            animation: bounceIn 1s ease;
+        }
+
+        .modal-button:hover {
+            background-color: #ff1493;
+            box-shadow: 0 4px #ff69b4;
+            transform: scale(1.05);
+        }
+
+        /* Modal Kedua */
+        #secondModal .modal-content {
+            background-color: #ffe4e1; /* Warna pink lebih terang */
+        }
+
+        /* Modal Ketiga */
+        #thirdModal .modal-content {
+            background-color: #ffcccb; /* Warna pink lembut */
+        }
+
+        /* Modal Keempat */
+        #fourthModal .modal-content {
+            background-color: #f08080; /* Warna pink salmon */
+        }
+
+        /* Modal Kelima */
+        #fifthModal .modal-content {
+            background-color: #ff7f7f; /* Warna pink lebih gelap */
+        }
+
+        /* Modal Keenam */
+        #sixthModal .modal-content {
+            background-color: #ff5252; /* Warna pink kemerahan */
+        }
+    </style>
+</head>
+<body>
+    <h1>Helo Mbak Inggrit</h1>
+    <div class="container">
+        <div class="gif-container">
+            <img src="path/to/your/a36566673e8de0e86c8dbe4d71b8af68.gif" alt="GIF Ulang Tahun">
+        </div>
+        <p>Tolong klik tombol yang di bawah ya hehe, jangan kaget ya <span class="heart">💖</span></p>
+        <button class="btn" id="myBtn">Lanjut</button>
+    </div>
+
+    <!-- Modal Pertama -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/8521b330ec35f7b604ba991ac34f539d.gif" alt="GIF Ulang Tahun">
+            </div>
+            <p>btw ingat gak ini hari spesialnya siapa! siapa hayo hehehe</p>
+            <button class="modal-button" id="secondBtn">Lanjut</button>
+        </div>
+    </div>
+
+    <!-- Modal Kedua -->
+    <div id="secondModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/sticker_19.gif" alt="GIF Spesial">
+            </div>
+            <p>lupa ya ni aku ingatin</p>
+            <button class="modal-button" id="thirdBtn">Lanjut</button>
+        </div>
+    </div>
+
+    <!-- Modal Ketiga -->
+    <div id="thirdModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/6259f15d830b56d23db317e4b19828f0.gif" alt="GIF Lucu">
+            </div>
+            <p>ini lhooo hari spesialnya si cantik yang baik hati yang imut yang kocak 😍</p>
+            <button class="modal-button" id="fourthBtn">Lanjut</button>
+        </div>
+    </div>
+
+    <!-- Modal Keempat -->
+    <div id="fourthModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/kawaii-love.gif" alt="GIF Ulang Tahun">
+            </div>
+            <p>Mau kado ndak ni</p>
+            <button class="modal-button" id="fifthBtn">Mauu</button>
+            <button class="modal-button" id="ndakBtn">ndak</button>
+        </div>
+    </div>
+
+    <!-- Modal Kelima -->
+    <div id="fifthModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/b3bc178809ab9214fef568dbe1eeb621.gif" alt="GIF Ulang Tahun">
+            </div>
+            <p>ndak da kado-kado beli sendiri😜 </p>
+            <button class="modal-button" id="sixthBtn">Lanjut</button>
+        </div>
+    </div>
+
+    <!-- Modal Keenam -->
+    <div id="sixthModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/images.jpg" alt="GIF Surprise">
+            </div>
+            <p>ndak kok bercanda aja hehehe</p>
+            <button class="modal-button" id="finalBtn">lanjut</button>
+        </div>
+    </div>
+
+    <!-- Modal Ketujuh -->
+    <div id="seventhModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/3fb13d44035053e06f3db17c8b687884.gif" alt="GIF Akhir">
+            </div>
+            <p>Selamat Ulang Tahun ya, Semoga diberi umur yang panjang dan selalu sehat, semoga tercapai semua impian mu yang kamu inggin kan di masa depan nanti 😁</p>
+            <button class="modal-button" id="whatsappBtn">Balas pesan di WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        // Kode untuk Modal
+        var seventhModal = document.getElementById("seventhModal");
+        var finalBtn = document.getElementById("finalBtn");
+        var closeSeventhModal = seventhModal.getElementsByClassName("close")[0];
+
+        finalBtn.onclick = function() {
+            sixthModal.style.display = "none";
+            seventhModal.style.display = "block";
+        }
+
+        closeSeventhModal.onclick = function() {
+            seventhModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == seventhModal) {
+                seventhModal.style.display = "none";
+            }
+        }
+
+        // Fungsi untuk mengarahkan ke WhatsApp
+        var whatsappBtn = document.getElementById("whatsappBtn");
+        whatsappBtn.onclick = function() {
+            var message = "Terima kasih atas ucapan ulang tahunnya! 😄";
+            var url = "https://wa.me/?text=" + encodeURIComponent(message);
+            window.open(url, "_blank");
+        };
+    </script>
+<!-- Penambahan Elemen Audio -->
+<audio id="background-music" autoplay loop>
+    <source src="Y2meta.app - wave to earth - love. (Official Lyric Video) (128 kbps).mp3" type="audio/mp3">
+    Browser Anda tidak mendukung pemutar audio.
+</audio>
+
+<!-- Tombol on/off untuk audio -->
+<div class="audio-control" onclick="toggleAudio()">on</div>
+
+<script>
+    function toggleAudio() {
+        var audio = document.getElementById('background-music');
+        var audioControl = document.querySelector('.audio-control');
+        if (audio.paused) {
+            audio.play();
+            audioControl.textContent = 'off';
+        } else {
+            audio.pause();
+            audioControl.textContent = 'on';
+        }
+    }
+</script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        var secondModal = document.getElementById("secondModal");
+        var secondBtn = document.getElementById("secondBtn");
+        var closeSecondModal = secondModal.getElementsByClassName("close")[0];
+
+        secondBtn.onclick = function() {
+            modal.style.display = "none";
+            secondModal.style.display = "block";
+        }
+
+        closeSecondModal.onclick = function() {
+            secondModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == secondModal) {
+                secondModal.style.display = "none";
+            }
+        }
+
+        var thirdModal = document.getElementById("thirdModal");
+        var thirdBtn = document.getElementById("thirdBtn");
+        var closeThirdModal = thirdModal.getElementsByClassName("close")[0];
+
+        thirdBtn.onclick = function() {
+            secondModal.style.display = "none";
+            thirdModal.style.display = "block";
+        }
+
+        closeThirdModal.onclick = function() {
+            thirdModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == thirdModal) {
+                thirdModal.style.display = "none";
+            }
+        }
+
+        var fourthModal = document.getElementById("fourthModal");
+        var fourthBtn = document.getElementById("fourthBtn");
+        var closeFourthModal = fourthModal.getElementsByClassName("close")[0];
+
+        fourthBtn.onclick = function() {
+            thirdModal.style.display = "none";
+            fourthModal.style.display = "block";
+        }
+
+        closeFourthModal.onclick = function() {
+            fourthModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == fourthModal) {
+                fourthModal.style.display = "none";
+            }
+        }
+
+        var fifthModal = document.getElementById("fifthModal");
+        var fifthBtn = document.getElementById("fifthBtn");
+        var closeFifthModal = fifthModal.getElementsByClassName("close")[0];
+
+        fifthBtn.onclick = function() {
+            fourthModal.style.display = "none";
+            fifthModal.style.display = "block";
+        }
+
+        closeFifthModal.onclick = function() {
+            fifthModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == fifthModal) {
+                fifthModal.style.display = "none";
+            }
+        }
+
+        var sixthModal = document.getElementById("sixthModal");
+        var sixthBtn = document.getElementById("sixthBtn");
+        var closeSixthModal = sixthModal.getElementsByClassName("close")[0];
+
+        sixthBtn.onclick = function() {
+            fifthModal.style.display = "none";
+            sixthModal.style.display = "block";
+        }
+
+        closeSixthModal.onclick = function() {
+            sixthModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == sixthModal) {
+                sixthModal.style.display = "none";
+            }
+        }
+        
+        var ndakBtn = document.getElementById("ndakBtn");
+        ndakBtn.onclick = function() {
+            alert("Haha jangan gengsi dong 😜");
+        }
+    </script>
+</body>
+</html>
